@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Tablero Interactivo TG</title>
+
+<style>
+body { text-align:center; font-family: Arial; }
+
+/* INFO */
+.info {
+  display:none;
+  position:absolute;
+  background:white;
+  border:1px solid black;
+  padding:10px;
+  font-size:13px;
+  text-align:left;
+  z-index:10;
+}
+
+/* BASE */
+.circuito {
+  position:absolute;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+/* HOVER */
+.circuito:hover {
+  filter: brightness(1.2);
+}
+
+/* FASES */
+.fase-r {
+  background-color: rgba(255,0,0,0.25);
+  border:2px solid red;
+}
+
+.fase-s {
+  background-color: rgba(0,0,0,0.25);
+  border:2px solid black;
+}
+
+.fase-t {
+  background-color: rgba(0,71,171,0.25);
+  border:2px solid #0047AB;
+}
+
+.neutro {
+  background-color: rgba(128,128,128,0.25);
+  border:2px dashed gray;
+}
+</style>
+
+</head>
+
+<body>
+
+<h2>Tablero General TG - Interactivo</h2>
+
+<div style="position:relative; display:inline-block;">
+
+<img src="tablero.png" width="1000">
+
+<!-- IG -->
+<div class="circuito neutro" style="top:120px; left:465px; width:65px; height:80px;" onclick="mostrar('ig')"></div>
+
+<div id="ig" class="info" style="top:100px; left:550px;">
+<b>IG - INTERRUPTOR GENERAL</b><br>
+Caja moldeada 3x32A<br>
+Conductores: 3 x 25 mm² NH-90<br>
+Neutro: 1 x 25 mm² NH-90
+</div>
+
+<!-- C-1 -->
+<div class="circuito fase-r" style="top:260px; left:290px; width:60px; height:30px;" onclick="mostrar('c1')"></div>
+<div id="c1" class="info" style="top:250px; left:60px;">
+<b>C-1 Riel Din:2x16A, 2x25A-30mA</b><br>
+Cable: 2.5 mm² MH-90
+</div>
+
+<!-- C-2 -->
+<div class="circuito fase-s" style="top:295px; left:290px; width:60px; height:30px;" onclick="mostrar('c2')"></div>
+<div id="c2" class="info" style="top:280px; left:60px;">
+<b>C-2 Riel Din:2x16A, 2x25A-30mA</b><br>
+Cable: 2.5 mm² MH-90
+</div>
+
+<!-- C-3 -->
+<div class="circuito fase-t" style="top:330px; left:290px; width:60px; height:30px;" onclick="mostrar('c3')"></div>
+<div id="c3" class="info" style="top:310px; left:60px;">
+<b>C-3 Riel Din:2x20A, 2x25A-30mA</b><br>
+Cable: 4 mm² MH-90
+</div>
+
+<!-- C-4 -->
+<div class="circuito fase-r" style="top:365px; left:290px; width:60px; height:30px;" onclick="mostrar('c4')"></div>
+<div id="c4" class="info" style="top:340px; left:60px;">
+<b>C-4 Riel Din:2x20A, 2x25A-30mA</b><br>
+Cable: 4 mm² MH-90
+</div>
+
+<!-- C-5 -->
+<div class="circuito fase-s" style="top:400px; left:290px; width:60px; height:30px;" onclick="mostrar('c5')"></div>
+<div id="c5" class="info" style="top:370px; left:60px;">
+<b>C-5 Riel Din:2x20A, 2x25A-30mA</b><br>
+Cable: 4 mm² MH-90
+</div>
+
+<!-- C-6 -->
+<div class="circuito fase-r" style="top:260px; left:670px; width:60px; height:30px;" onclick="mostrar('c6')"></div>
+<div id="c6" class="info" style="top:250px; left:735px;">
+<b>C-6 Riel Din:2x20A, 2x25A-30mA</b><br>
+Cable: 4 mm² MH-90
+</div>
+
+<!-- C-7 -->
+<div class="circuito fase-s" style="top:295px; left:670px; width:60px; height:30px;" onclick="mostrar('c7')"></div>
+<div id="c7" class="info" style="top:280px; left:735px;">
+<b>C-7 Riel Din:2x20A, 2x25A-30mA</b><br>
+Cable: 4 mm² MH-90
+</div>
+
+<!-- C-8 -->
+<div class="circuito fase-t" style="top:330px; left:670px; width:60px; height:30px;" onclick="mostrar('c8')"></div>
+<div id="c8" class="info" style="top:310px; left:735px;">
+<b>C-8 Riel Din:2x20A, 2x25A-30mA</b><br>
+Cable: 4 mm² MH-90
+</div>
+
+<!-- C-9 -->
+<div class="circuito fase-r" style="top:365px; left:670px; width:60px; height:30px;" onclick="mostrar('c9')"></div>
+<div id="c9" class="info" style="top:340px; left:735px;">
+<b>C-9 Riel Din:2x20A, 2x25A-30mA</b><br>
+Cable: 4 mm² MH-90
+</div>
+
+</div>
+
+<script>
+function mostrar(id){
+  let e = document.getElementById(id);
+  e.style.display = (e.style.display === 'block') ? 'none' : 'block';
+}
+</script>
+
+</body>
+</html>
