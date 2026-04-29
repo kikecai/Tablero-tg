@@ -10,16 +10,42 @@
 body{
   margin:0;
   background:#0f172a;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  min-height:100vh;
+  font-family:Arial;
 }
 
-/* HACE EL SVG RESPONSIVO */
-img{
+/* SVG */
+#contenedor{
+  display:flex;
+  justify-content:center;
+}
+
+svg{
   width:100%;
   max-width:500px;
+}
+
+/* CAJÓN INFO */
+#infoBox{
+  position:fixed;
+  bottom:-100%;
+  left:0;
+  right:0;
+  background:#111;
+  color:white;
+  padding:20px;
+  border-top:2px solid #333;
+  transition:0.3s;
+}
+
+#infoBox.active{
+  bottom:0;
+}
+
+/* botón cerrar */
+#cerrar{
+  float:right;
+  cursor:pointer;
+  font-size:18px;
 }
 </style>
 
@@ -27,7 +53,76 @@ img{
 
 <body>
 
-<img src="tablero.svg">
+<div id="contenedor">
+
+  <!-- IMPORTAMOS EL SVG -->
+  <object id="svgObj" type="image/svg+xml" data="tablero.svg"></object>
+
+</div>
+
+<!-- CAJÓN -->
+<div id="infoBox">
+  <span id="cerrar">✖</span>
+  <div id="contenido"></div>
+</div>
+
+<script>
+
+const data = {
+  ig: `
+    <b>IG - Interruptor General</b><br>
+    3x32A<br>
+    Cable: 25 mm²
+  `,
+  c1: `
+    <b>C1</b><br>
+    2x16A<br>
+    Fase R<br>
+    Cable: 2.5 mm²
+  `,
+  c2: `
+    <b>C2</b><br>
+    2x16A<br>
+    Fase S
+  `
+  // sigue con todos...
+};
+
+const obj = document.getElementById("svgObj");
+
+obj.addEventListener("load", () => {
+
+  const svgDoc = obj.contentDocument;
+
+  Object.keys(data).forEach(id => {
+
+    let el = svgDoc.getElementById(id);
+
+    if(el){
+      el.style.cursor = "pointer";
+
+      el.addEventListener("click", () => {
+        mostrarInfo(id);
+      });
+    }
+
+  });
+
+});
+
+function mostrarInfo(id){
+  const box = document.getElementById("infoBox");
+  const contenido = document.getElementById("contenido");
+
+  contenido.innerHTML = data[id];
+  box.classList.add("active");
+}
+
+document.getElementById("cerrar").onclick = () => {
+  document.getElementById("infoBox").classList.remove("active");
+};
+
+</script>
 
 </body>
 </html>
