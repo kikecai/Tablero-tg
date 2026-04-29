@@ -10,130 +10,24 @@
 body{
   margin:0;
   background:#0f172a;
-  color:white;
-  font-family:Arial;
-}
-
-/* HEADER */
-.header{
-  padding:16px;
-  text-align:center;
-  border-bottom:1px solid rgba(255,255,255,0.1);
-}
-
-.header h1{
-  font-size:18px;
-  margin:0;
-}
-
-.header p{
-  font-size:12px;
-  opacity:0.7;
-}
-
-/* BARRAS */
-.barras{
   display:flex;
   justify-content:center;
-  gap:10px;
-  margin:20px 0;
+  align-items:center;
+  min-height:100vh;
 }
 
-.barra{
-  width:10px;
-  height:120px;
-  border-radius:5px;
-}
-
-.r{ background:red; }
-.s{ background:black; }
-.t{ background:#007BFF; }
-.n{ background:gray; }
-
-/* CIRCUITOS */
-.circuitos{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  padding:10px;
-}
-
-.circuito{
-  padding:14px;
-  border-radius:10px;
-  text-align:center;
-  font-weight:bold;
-  cursor:pointer;
-  transition:0.2s;
-}
-
-.circuito:active{
-  transform:scale(0.95);
-}
-
-.circuito.R{ background:red; }
-.circuito.S{ background:black; }
-.circuito.T{ background:#007BFF; }
-
-.info{
-  position:fixed;
-  bottom:0;
-  left:0;
-  right:0;
-  background:#111;
-  padding:20px;
-  display:none;
+/* HACE EL SVG RESPONSIVO */
+img{
+  width:100%;
+  max-width:500px;
 }
 </style>
+
 </head>
 
 <body>
 
-<div class="header">
-  <h1 id="nombre"></h1>
-  <p id="sistema"></p>
-</div>
-
-<div class="barras">
-  <div class="barra r"></div>
-  <div class="barra s"></div>
-  <div class="barra t"></div>
-  <div class="barra n"></div>
-</div>
-
-<div class="circuitos" id="circuitos"></div>
-
-<div class="info" id="info"></div>
-
-<script>
-fetch('tablero.json')
-.then(r => r.json())
-.then(data => {
-
-  document.getElementById('nombre').innerText = data.proyecto.nombre;
-  document.getElementById('sistema').innerText = data.proyecto.sistema;
-
-  const cont = document.getElementById('circuitos');
-
-  data.circuitos.forEach(c => {
-    let div = document.createElement('div');
-    div.className = 'circuito ' + c.fase;
-    div.innerText = c.id;
-
-    div.onclick = () => {
-      let info = document.getElementById('info');
-      info.style.display = 'block';
-      info.innerHTML = `
-        <b>${c.id}</b><br>
-        Fase: ${c.fase}
-      `;
-    };
-
-    cont.appendChild(div);
-  });
-
-});
-</script>
+<img src="tablero.svg">
 
 </body>
 </html>
